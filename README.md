@@ -1,6 +1,6 @@
 # Social Platform Project
 
-Scalable social platform backend built using **Spring Boot microservices architecture**, featuring API Gateway, service discovery, Kafka-based event-driven communication, and PostgreSQL. :contentReference[oaicite:0]{index=0}
+Scalable social platform backend built using **Spring Boot microservices architecture**, featuring API Gateway, service discovery, Kafka-based event-driven communication, and PostgreSQL.
 
 ---
 
@@ -97,7 +97,4 @@ This project is designed to be deployed on **Kubernetes** using:
 - Private networking for services
 - API Gateway with public access
 
----
-
-## 📁 Folder Structure
 
