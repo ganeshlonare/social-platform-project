@@ -1,3 +1,18 @@
 spring:
   application:
     name: userService
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userServiceDB
+    username: postgres
+    password: ganesh@123
+    driver-class-name=org: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+server:
+  port: 8082
