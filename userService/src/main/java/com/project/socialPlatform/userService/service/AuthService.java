@@ -1,5 +1,6 @@
 package com.project.socialPlatform.userService.service;
 
+import com.project.socialPlatform.userService.dto.LoginRequestDto;
 import com.project.socialPlatform.userService.dto.SignupRequestDto;
 import com.project.socialPlatform.userService.dto.UserDto;
 import com.project.socialPlatform.userService.entity.User;
@@ -18,6 +19,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final JwtService jwtService;
 
     public UserDto signup(SignupRequestDto signupRequestDto) {
 
@@ -29,5 +31,14 @@ public class AuthService {
 
         user= userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
+    }
+
+    public String login(LoginRequestDto loginRequestDto) {
+        User user = userRepository.findByEmail(loginRequestDto.getEmail()).orElseThrow(()-> new BadRequestException("Incorrect Email or Password"));
+
+        boolean isPasswordMatch = BCrypt.match(loginRequestDto.getPassword(), user.getPassword());
+        if(!isPasswordMatch) throw new BadRequestException("Incorrect Email or Password");
+
+        return jwtService.generateJwtToken(user);
     }
 }
