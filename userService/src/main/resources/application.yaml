@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/userServiceDB
     username: postgres
-    password: ganesh@123
+    password: postgres
     driver-class-name=org: org.postgresql.Driver
 
   jpa:
@@ -15,4 +15,4 @@ spring:
     show-sql: true
 
 server:
-  port: 8082
+  port: 8081

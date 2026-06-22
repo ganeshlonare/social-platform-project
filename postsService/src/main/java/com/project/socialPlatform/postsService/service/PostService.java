@@ -21,26 +21,21 @@ public class PostService {
     private final ModelMapper modelMapper;
 
     public PostDto createPost(PostCreateRequestDto postCreateRequestDto, Long userId) {
-        log.info("Creating post for user with id: {}",userId);
-        Post post = modelMapper.map(postCreateRequestDto,Post.class);
+        Post post= modelMapper.map(postCreateRequestDto, Post.class);
         post.setUserId(userId);
         post = postRepository.save(post);
-        log.info("Post created with id: {}",userId);
-        return modelMapper.map(post, PostDto.class);
+        return modelMapper.map(post,PostDto.class);
     }
 
-    public PostDto getPost(Long postId) {
-        log.info("Getting post with id: {}",postId);
-        Post post= postRepository.findById(postId).orElseThrow(()-> new ResourceNotFoundException("Post Not found with id: "+ postId));
-        log.info("Post found with id: {}",postId);
+    public PostDto getPostById(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(()-> new ResourceNotFoundException("Post not found with Id "+ postId));
         return modelMapper.map(post, PostDto.class);
     }
 
     public List<PostDto> getAllPostsOfUser(Long userId) {
-        log.info("Getting all the posts of a user with id: {}",userId);
-        List<Post> postList = postRepository.findByUserId(userId);
-        return postList.stream()
-                .map(post -> modelMapper.map(post,PostDto.class))
+        List<Post> posts= postRepository.findByUserId(userId);
+        return posts.stream()
+                .map(post -> modelMapper.map(post, PostDto.class))
                 .toList();
     }
 }
