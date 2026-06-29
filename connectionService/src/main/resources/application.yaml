@@ -1,6 +1,6 @@
 spring:
   application:
-    name: connectionService
+    name: connection-service
   neo4j:
     uri: bolt://neo4j:7687
     authentication:
@@ -10,7 +10,7 @@ spring:
 server:
   port: 8083
   servlet:
-    context-path: /api/v1/connections
+    context-path: /connections
 
 eureka:
   client:
